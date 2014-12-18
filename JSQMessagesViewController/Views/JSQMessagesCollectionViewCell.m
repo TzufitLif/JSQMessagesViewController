@@ -58,8 +58,11 @@
 @property (assign, nonatomic) CGSize avatarViewSize;
 
 @property (weak, nonatomic, readwrite) UITapGestureRecognizer *tapGestureRecognizer;
+@property (weak, nonatomic, readwrite) UISwipeGestureRecognizer *swipeGestureRecognizer;
 
 - (void)jsq_handleTapGesture:(UITapGestureRecognizer *)tap;
+
+- (void)jsq_handleSwipeGesture:(UISwipeGestureRecognizer *)swipe;
 
 - (void)jsq_updateConstraint:(NSLayoutConstraint *)constraint withConstant:(CGFloat)constant;
 
@@ -115,6 +118,11 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jsq_handleTapGesture:)];
     [self addGestureRecognizer:tap];
     self.tapGestureRecognizer = tap;
+    
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(jsq_handleSwipeGesture:)];
+    swipe.direction=UISwipeGestureRecognizerDirectionLeft;
+    [self addGestureRecognizer:swipe];
+    self.swipeGestureRecognizer = swipe;
 }
 
 - (void)dealloc
@@ -324,6 +332,15 @@
     }
     else {
         [self.delegate messagesCollectionViewCellDidTapCell:self atPosition:touchPt];
+    }
+}
+
+- (void)jsq_handleSwipeGesture:(UISwipeGestureRecognizer *)swipe
+{
+    CGPoint touchPt = [swipe locationInView:self];
+    
+    if (CGRectContainsPoint(self.messageBubbleContainerView.frame, touchPt)) {
+        [self.delegate messagesCollectionViewCellDidSwipeMessageBubble:self];
     }
 }
 

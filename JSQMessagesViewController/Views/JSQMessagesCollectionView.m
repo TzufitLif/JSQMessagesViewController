@@ -153,6 +153,11 @@
     [self.delegate collectionView:self didTapMessageBubbleAtIndexPath:indexPath];
 }
 
+- (void)messagesCollectionViewCellDidSwipeMessageBubble:(JSQMessagesCollectionViewCell *)cell
+{
+    [self.delegate collectionView:self didSwipeMessageBubbleAtIndexPath:[self indexPathForCell:cell]];
+}
+
 - (void)messagesCollectionViewCellDidTapCell:(JSQMessagesCollectionViewCell *)cell atPosition:(CGPoint)position
 {
     NSIndexPath *indexPath = [self indexPathForCell:cell];

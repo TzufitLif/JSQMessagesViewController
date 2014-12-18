@@ -45,6 +45,7 @@
  */
 - (void)messagesCollectionViewCellDidTapMessageBubble:(JSQMessagesCollectionViewCell *)cell;
 
+- (void)messagesCollectionViewCellDidSwipeMessageBubble:(JSQMessagesCollectionViewCell *)cell;
 /**
  *  Tells the delegate that the cell has been tapped at the point specified by position.
  *

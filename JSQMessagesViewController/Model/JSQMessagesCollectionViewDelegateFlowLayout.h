@@ -93,6 +93,8 @@
  */
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapMessageBubbleAtIndexPath:(NSIndexPath *)indexPath;
 
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView didSwipeMessageBubbleAtIndexPath:(NSIndexPath *)indexPath;
+
 /**
  *  Notifies the delegate that the cell at the specified indexPath did receive a tap event at the specified touchLocation.
  *
